@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalentLens AI | Resume Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Optional document-reading libraries -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">T</span> TalentLens<span class="brand-ai"> AI</span></a>
+    <span class="status"><span class="status-dot"></span> Resume Analyzer</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">YOUR CAREER, CLEARER</span>
+      <h1>Find your <span>career match.</span></h1>
+      <p>Analyze your resume against a job description and discover the skills you should highlight.</p>
+    </section>
+
+    <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+
+    <section class="workspace">
+      <div class="panel">
+        <div class="panel-heading">
+          <span class="step">01</span>
+          <div><h2>Your resume</h2><p>Upload a PDF, DOCX or TXT file, or paste your text.</p></div>
+        </div>
+
+        <label class="upload-zone" for="resumeFile">
+          <span class="upload-icon">↑</span>
+          <strong>Choose your resume</strong>
+          <span>PDF, DOCX or TXT · Max 5 MB</span>
+          <span class="file-button">Browse files</span>
+        </label>
+        <input id="resumeFile" type="file" accept=".pdf,.docx,.txt">
+
+        <p id="fileName" class="file-name">No file selected</p>
+
+        <label class="field-label" for="resumeText">Resume text</label>
+        <textarea id="resumeText" rows="9" placeholder="Paste your resume here..."></textarea>
+        <div class="field-footer"><span>Include your skills, experience and education.</span><span id="resumeCount">0 characters</span></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">
+          <span class="step">02</span>
+          <div><h2>Target job</h2><p>Tell us which role you want to apply for.</p></div>
+        </div>
+
+        <label class="field-label" for="jobTitle">Job title</label>
+        <input id="jobTitle" type="text" placeholder="e.g. Frontend Developer">
+
+        <label class="field-label" for="jobDescription">Job description</label>
+        <textarea id="jobDescription" rows="12" placeholder="Paste the job description and required skills here..."></textarea>
+
+        <button id="sampleBtn" class="secondary-button" type="button">Load sample data</button>
+      </div>
+    </section>
+
+    <div class="analyze-row">
+      <p>Your text is analyzed in this browser. No account is required.</p>
+      <button id="analyzeBtn" class="primary-button" type="button">Analyze my match <span>→</span></button>
+    </div>
+
+    <section id="results" class="results" hidden>
+      <div class="results-header">
+        <div><span class="eyebrow">YOUR ANALYSIS</span><h2>Resume match report</h2></div>
+        <button id="downloadBtn" class="secondary-button" type="button">Download report</button>
+      </div>
+
+      <div class="score-card">
+        <div id="scoreRing" class="score-ring"><div><strong id="scoreValue">0%</strong><span>match score</span></div></div>
+        <div class="score-copy"><h3 id="resultHeadline">Your results are ready</h3><p id="resultSummary"></p><p class="disclaimer">This is a keyword-based estimate, not a hiring probability or an AI hiring decision.</p></div>
+      </div>
+
+      <div class="result-grid">
+        <article class="result-card"><h3>✓ Matched skills <span id="matchedCount" class="count">0</span></h3><div id="matchedSkills" class="chips"></div></article>
+        <article class="result-card"><h3>＋ Skills to develop <span id="missingCount" class="count">0</span></h3><div id="missingSkills" class="chips"></div></article>
+      </div>
+
+      <article class="result-card recommendations"><h3>Recommended next steps</h3><ul id="recommendations"></ul></article>
+    </section>
+
+    <footer>TalentLens AI · Build a stronger application, one step at a time.</footer>
+  </main>
+</body>
+</html>
